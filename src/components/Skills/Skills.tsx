@@ -1,7 +1,19 @@
 import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
-import { FaDatabase, FaFigma, FaGitAlt, FaNodeJs, FaReact, FaSass } from 'react-icons/fa'
-import { SiJavascript, SiTypescript } from 'react-icons/si'
+import {
+    FaDatabase,
+    FaJava,
+    FaFigma,
+    FaGitAlt,
+    FaNetworkWired,
+    FaNodeJs,
+    FaPlug,
+    FaReact,
+    FaRobot,
+    FaSass,
+    FaServer,
+} from 'react-icons/fa'
+import { SiDocker, SiGraphql, SiJavascript, SiMysql, SiTypescript } from 'react-icons/si'
 import type { SkillIcon, SkillItem } from '../../types/landing'
 import './Skills.scss'
 
@@ -18,6 +30,14 @@ const skillColorClassMap: Record<SkillIcon, string> = {
     git: 'skills__icon--git',
     figma: 'skills__icon--figma',
     database: 'skills__icon--database',
+    server: 'skills__icon--server',
+    api: 'skills__icon--api',
+    graphql: 'skills__icon--graphql',
+    grpc: 'skills__icon--grpc',
+    mysql: 'skills__icon--mysql',
+    ai: 'skills__icon--ai',
+    java: 'skills__icon--java',
+    docker: 'skills__icon--docker',
 }
 
 const iconMap: Record<SkillIcon, ReactNode> = {
@@ -29,6 +49,14 @@ const iconMap: Record<SkillIcon, ReactNode> = {
     git: <FaGitAlt />,
     figma: <FaFigma />,
     database: <FaDatabase />,
+    server: <FaServer />,
+    api: <FaPlug />,
+    graphql: <SiGraphql />,
+    grpc: <FaNetworkWired />,
+    mysql: <SiMysql />,
+    ai: <FaRobot />,
+    java: <FaJava />,
+    docker: <SiDocker />,
 }
 
 const containerVariants = {
@@ -87,17 +115,6 @@ function Skills({ skills }: SkillsProps) {
                             <div className={`skills__icon ${skillColorClassMap[skill.icon]}`}>{iconMap[skill.icon]}</div>
                             <h3>{skill.name}</h3>
                             <p>{skill.description}</p>
-
-                            <div className="skills__meter" aria-label={`${skill.name} proficiency ${skill.level}%`}>
-                                <motion.div
-                                    className="skills__meter-fill"
-                                    initial={{ width: 0 }}
-                                    whileInView={{ width: `${skill.level}%` }}
-                                    viewport={{ once: true, amount: 0.6 }}
-                                    transition={{ duration: 0.9, delay: 0.1 }}
-                                />
-                            </div>
-                            <span className="skills__level">{skill.level}%</span>
                         </motion.article>
                     ))}
                 </motion.div>

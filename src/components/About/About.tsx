@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { FaBolt, FaCode, FaPalette } from 'react-icons/fa'
+import { FaBolt, FaCode } from 'react-icons/fa'
 import { useRef } from 'react'
 import type { AboutContent } from '../../types/landing'
 import './About.scss'
@@ -33,21 +33,17 @@ function About({ content }: AboutProps) {
 
                     <div className="about__tags">
                         <span className="about__tag about__tag--blue">
-                            <FaCode /> UI Engineering
-                        </span>
-                        <span className="about__tag about__tag--pink">
-                            <FaPalette /> Visual Thinking
+                            <FaCode /> Fullstack Engineer
                         </span>
                         <span className="about__tag about__tag--mint">
-                            <FaBolt /> Fast Iteration
+                            <FaBolt /> AI Agent
                         </span>
                     </div>
 
                     <div className="about__meta">
                         <p>Runtime</p>
                         <strong>Learning Mode: ON</strong>
-                        <small>Focus: UI engineering + practical products</small>
-                    </div>
+                        <small>Focus: AI-powered workflow + New technologies</small>                    </div>
                 </motion.div>
 
                 <motion.div
