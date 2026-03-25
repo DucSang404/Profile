@@ -6,7 +6,7 @@ import {
   type Project,
   type SkillCategory,
 } from '../types/profile'
-import profilePlaceholder from '../assets/images/profile-placeholder.svg'
+import profilePlaceholder from '../assets/images/avatar.png'
 
 const contacts: ContactLink[] = [
   {
