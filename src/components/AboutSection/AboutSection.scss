@@ -1,0 +1,14 @@
+@use '../../styles/variables' as *;
+
+.about-section {
+  &__content {
+    display: grid;
+    gap: $space-4;
+
+    p {
+      margin: 0;
+      color: $color-text;
+      font-size: $font-md;
+    }
+  }
+}

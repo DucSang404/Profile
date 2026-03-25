@@ -1,0 +1,48 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.contact-section {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-4;
+
+    @include respond(tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.98), rgba(240, 249, 255, 0.9));
+    padding: $space-5;
+    transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgba(15, 118, 110, 0.4);
+      box-shadow: $shadow-sm;
+    }
+  }
+
+  &__label {
+    color: $color-text-muted;
+    font-size: $font-sm;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  &__value {
+    color: $color-secondary;
+    font-family: $font-heading;
+    font-size: $font-lg;
+    line-height: 1.2;
+
+    @include line-clamp(1);
+  }
+}

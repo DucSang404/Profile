@@ -1,0 +1,10 @@
+@use '../../styles/variables' as *;
+
+.profile-page {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+  padding-bottom: $space-10;
+}

@@ -1,0 +1,45 @@
+@use '../../styles/variables' as *;
+
+.education-section {
+  &__list {
+    display: grid;
+    gap: $space-4;
+  }
+
+  &__card {
+    border-left: 4px solid $color-primary;
+    border-radius: $radius-md;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: $space-5;
+    box-shadow: $shadow-sm;
+
+    h3 {
+      margin: 0;
+      color: $color-secondary;
+      font-family: $font-heading;
+      font-size: $font-xl;
+    }
+
+    ul {
+      margin: $space-3 0 0;
+      padding-left: $space-6;
+      color: $color-text;
+    }
+
+    li {
+      margin-bottom: $space-2;
+    }
+  }
+
+  &__degree,
+  &__period,
+  &__gpa {
+    margin: $space-2 0 0;
+    color: $color-text-muted;
+  }
+
+  &__degree {
+    color: $color-primary-strong;
+    font-weight: 700;
+  }
+}

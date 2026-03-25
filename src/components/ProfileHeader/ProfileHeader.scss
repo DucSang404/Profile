@@ -1,0 +1,122 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.profile-header {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: $space-8;
+  margin-top: $space-8;
+  padding: $space-10;
+
+  @include respond(tablet) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: $space-6;
+    padding: $space-8 $space-6;
+  }
+
+  @include respond(mobile) {
+    padding: $space-6 $space-4;
+  }
+
+  &__image-wrap {
+    @include flex-center();
+  }
+
+  &__image {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid rgba(255, 255, 255, 0.7);
+    box-shadow: $shadow-md;
+
+    @include respond(mobile) {
+      width: 170px;
+      height: 170px;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+
+    h1 {
+      margin: 0;
+      color: $color-secondary;
+      font-family: $font-heading;
+      font-size: clamp($font-2xl, 4vw, $font-4xl);
+      line-height: 1.1;
+    }
+
+    h2 {
+      margin: 0;
+      color: $color-primary;
+      font-family: $font-heading;
+      font-size: clamp($font-lg, 2.3vw, $font-2xl);
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 0;
+      max-width: 62ch;
+      color: $color-text-muted;
+      font-size: $font-md;
+    }
+  }
+
+  &__tag {
+    width: fit-content;
+    margin-bottom: $space-1;
+
+    @include respond(tablet) {
+      margin-inline: auto;
+    }
+  }
+
+  &__location {
+    color: $color-secondary;
+    font-weight: 600;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+    margin-top: $space-4;
+
+    @include respond(tablet) {
+      justify-content: center;
+    }
+  }
+
+  &__button {
+    border-radius: $radius-pill;
+    padding: $space-3 $space-5;
+    font-size: $font-sm;
+    font-weight: 700;
+    transition: transform 250ms ease, box-shadow 250ms ease, background-color 250ms ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-sm;
+    }
+
+    &--primary {
+      background-color: $color-primary;
+      color: #fff;
+
+      &:hover {
+        background-color: $color-primary-strong;
+      }
+    }
+
+    &--ghost {
+      border: 1px solid $color-border;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: $color-secondary;
+    }
+  }
+}

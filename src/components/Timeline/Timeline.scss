@@ -1,0 +1,122 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.timeline__inner {
+    overflow: hidden;
+}
+
+.timeline__track {
+    position: relative;
+    margin-top: $space-5;
+    padding-left: 2.8rem;
+
+    @include respond(tablet) {
+        padding-left: 2.1rem;
+    }
+}
+
+.timeline__line {
+    position: absolute;
+    left: 0.95rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform-origin: top;
+    background: linear-gradient(180deg, rgba(84, 227, 255, 0.9), rgba(255, 146, 206, 0.85), rgba(90, 241, 188, 0.85));
+    box-shadow: 0 0 16px rgba(84, 227, 255, 0.45);
+}
+
+.timeline__items {
+    display: grid;
+    gap: $space-6;
+}
+
+.timeline__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 88px 40px minmax(0, 1fr);
+    align-items: start;
+    gap: $space-4;
+
+    @include respond(tablet) {
+        grid-template-columns: 70px 34px minmax(0, 1fr);
+        gap: $space-3;
+    }
+}
+
+.timeline__year {
+    justify-self: start;
+    border-radius: 999px;
+    padding: 0.25rem 0.65rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(10, 17, 34, 0.85);
+    color: $color-accent-cyan;
+    font-weight: 700;
+    font-size: $font-xs;
+    letter-spacing: 0.08em;
+}
+
+.timeline__dot {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin-top: 0.15rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 0 20px rgba(84, 227, 255, 0.2);
+}
+
+.timeline__dot--education {
+    background: linear-gradient(130deg, rgba(84, 227, 255, 0.26), rgba(84, 227, 255, 0.1));
+    color: #56e3ff;
+}
+
+.timeline__dot--internship {
+    background: linear-gradient(130deg, rgba(255, 152, 213, 0.3), rgba(255, 152, 213, 0.1));
+    color: #ff9edb;
+}
+
+.timeline__dot--leadership {
+    background: linear-gradient(130deg, rgba(126, 255, 164, 0.3), rgba(126, 255, 164, 0.1));
+    color: #8dfca8;
+}
+
+.timeline__dot--career {
+    background: linear-gradient(130deg, rgba(164, 142, 255, 0.28), rgba(164, 142, 255, 0.1));
+    color: #b09bff;
+}
+
+.timeline__card {
+    @include glass-card;
+
+    border-radius: 1rem;
+    padding: $space-4 $space-5;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        border-color: rgba(84, 227, 255, 0.35);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.32);
+    }
+
+    h3 {
+        margin: 0.2rem 0 0;
+        font-family: $font-display;
+        font-size: clamp(1.05rem, 2vw, 1.3rem);
+    }
+
+    p {
+        margin: $space-2 0 0;
+        color: $color-text-soft;
+        line-height: 1.65;
+    }
+}
+
+.timeline__subtitle {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+    color: rgba(222, 232, 255, 0.75) !important;
+}

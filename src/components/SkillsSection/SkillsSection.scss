@@ -1,0 +1,45 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.skills-section {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-5;
+
+    @include respond(tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.95), rgba(249, 251, 255, 0.95));
+    padding: $space-5;
+    transition: transform 250ms ease, box-shadow 250ms ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-sm;
+    }
+
+    h3 {
+      margin: 0 0 $space-4;
+      color: $color-secondary;
+      font-family: $font-heading;
+      font-size: $font-xl;
+    }
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+  }
+
+  &__chip {
+    border-color: rgba(15, 118, 110, 0.25);
+    background-color: rgba(15, 118, 110, 0.08);
+  }
+}

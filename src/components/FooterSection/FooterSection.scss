@@ -1,0 +1,21 @@
+@use '../../styles/variables' as *;
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  margin-top: $space-2;
+  padding: $space-2 0 $space-8;
+  text-align: center;
+
+  p {
+    margin: 0;
+    color: $color-text-muted;
+    font-size: $font-sm;
+  }
+
+  p:last-child {
+    color: $color-secondary;
+    font-weight: 600;
+  }
+}

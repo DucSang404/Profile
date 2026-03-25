@@ -1,0 +1,30 @@
+@use '../../styles/variables' as *;
+
+.home {
+    position: relative;
+    overflow-x: clip;
+    padding-top: 5rem;
+    padding-bottom: $space-10;
+}
+
+.home__fx {
+    position: fixed;
+    width: 320px;
+    height: 320px;
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(70px);
+    opacity: 0.45;
+}
+
+.home__fx--left {
+    left: -90px;
+    top: 20vh;
+    background: radial-gradient(circle, rgba(66, 232, 255, 0.82) 0%, rgba(66, 232, 255, 0) 72%);
+}
+
+.home__fx--right {
+    right: -70px;
+    top: 50vh;
+    background: radial-gradient(circle, rgba(255, 138, 205, 0.82) 0%, rgba(255, 138, 205, 0) 72%);
+}
