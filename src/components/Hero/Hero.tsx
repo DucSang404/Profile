@@ -91,10 +91,10 @@ function Hero({ content }: HeroProps) {
                             <FaCode /> Frontend
                         </span>
                         <span>
-                            <FaServer /> Backend Basics
+                            <FaServer /> Backend
                         </span>
                         <span>
-                            <FaCube /> Product Mindset
+                            <FaCube /> AI Agent
                         </span>
                     </div>
                 </motion.div>
@@ -119,7 +119,7 @@ function Hero({ content }: HeroProps) {
                         <p>
                             <span>$</span> stack --focus
                         </p>
-                        <p className="hero__output">React • TypeScript • SCSS • Motion UI</p>
+                        <p className="hero__output">Nodejs • Microservice • AI Agent</p>
                         <p>
                             <span>$</span> status
                         </p>

@@ -1,4 +1,4 @@
-import avatarImage from '../assets/images/profile-placeholder.svg'
+import avatarImage from '../assets/images/avatar.png'
 import type { LandingData } from '../types/landing'
 
 export const landingData: LandingData = {
@@ -20,52 +20,64 @@ export const landingData: LandingData = {
     },
     skills: [
         {
-            name: 'React',
-            icon: 'react',
-            description: 'Component-driven UI with reusable architecture.',
-            level: 88,
+            name: 'Node.js',
+            icon: 'node',
+            description: 'Building scalable backend services and microservice architecture.',
+        },
+        {
+            name: 'Microservices',
+            icon: 'server',
+            description: 'Service decomposition, inter-service communication, and scalability.',
+        },
+        {
+            name: 'REST API',
+            icon: 'api',
+            description: 'Designing clean and maintainable RESTful APIs.',
+        },
+        {
+            name: 'gRPC',
+            icon: 'grpc',
+            description: 'High-performance service-to-service communication.',
+        },
+        {
+            name: 'GraphQL',
+            icon: 'graphql',
+            description: 'Flexible query-based APIs for modern applications.',
+        },
+        {
+            name: 'MySQL',
+            icon: 'mysql',
+            description: 'Relational database design and query optimization.',
+        },
+        {
+            name: 'NoSQL',
+            icon: 'database',
+            description: 'Working with MongoDB/Redis for scalable data storage.',
+        },
+        {
+            name: 'AI Agent',
+            icon: 'ai',
+            description: 'Building AI-assisted workflows and agent-based automation.',
+        },
+        {
+            name: 'Java',
+            icon: 'java',
+            description: 'Backend services and integration support.',
         },
         {
             name: 'TypeScript',
             icon: 'typescript',
-            description: 'Type-safe development for stable and scalable code.',
-            level: 82,
+            description: 'Type-safe backend and full-stack development.',
         },
         {
-            name: 'JavaScript',
-            icon: 'javascript',
-            description: 'Modern ES patterns and interactive browser experiences.',
-            level: 86,
-        },
-        {
-            name: 'SCSS',
-            icon: 'sass',
-            description: 'Design systems, mixins, and maintainable styling.',
-            level: 84,
-        },
-        {
-            name: 'Node.js',
-            icon: 'node',
-            description: 'Building lightweight APIs for full-stack projects.',
-            level: 74,
+            name: 'Docker',
+            icon: 'docker',
+            description: 'Containerizing services for microservice deployment.',
         },
         {
             name: 'Git',
             icon: 'git',
-            description: 'Version control and collaborative workflow habits.',
-            level: 80,
-        },
-        {
-            name: 'Figma',
-            icon: 'figma',
-            description: 'UI concepts, flows, and visual experimentation.',
-            level: 72,
-        },
-        {
-            name: 'Database',
-            icon: 'database',
-            description: 'Working with SQL and NoSQL basics for app data.',
-            level: 70,
+            description: 'Version control and collaborative workflow.',
         },
     ],
     projects: [

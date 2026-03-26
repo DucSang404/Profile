@@ -23,12 +23,19 @@ export type SkillIcon =
     | 'git'
     | 'figma'
     | 'database'
+    | 'server'
+    | 'api'
+    | 'graphql'
+    | 'grpc'
+    | 'mysql'
+    | 'ai'
+    | 'java'
+    | 'docker'
 
 export interface SkillItem {
     name: string
     icon: SkillIcon
     description: string
-    level: number
 }
 
 export interface ProjectItem {
