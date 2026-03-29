@@ -1,4 +1,4 @@
-import avatarImage from '../assets/images/avatar.png'
+import avatarImage from '../assets/images/avt.png'
 import type { LandingData } from '../types/landing'
 
 export const landingData: LandingData = {
