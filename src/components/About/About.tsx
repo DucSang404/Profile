@@ -43,7 +43,8 @@ function About({ content }: AboutProps) {
                     <div className="about__meta">
                         <p>Runtime</p>
                         <strong>Learning Mode: ON</strong>
-                        <small>Focus: AI-powered workflow + New technologies</small>                    </div>
+                        <small>Focus: AI-powered workflow + New technologies</small>
+                    </div>
                 </motion.div>
 
                 <motion.div
