@@ -63,11 +63,13 @@ jobs:
           target: /var/www/production
           strip_components: 1
 
-      - name: Reload Nginx
+      - name: Deploy to Docker container
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           port: ${{ secrets.VPS_PORT }}
-          script: sudo systemctl reload nginx
+          script: |
+            docker cp /var/www/production/. my-app:/usr/share/nginx/html/
+            docker exec my-app nginx -s reload
