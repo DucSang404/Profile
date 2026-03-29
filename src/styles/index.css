@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --font-sans: 'DM Sans', 'Segoe UI', sans-serif;
+  --font-display: 'Space Grotesk', 'DM Sans', 'Segoe UI', sans-serif;
+  --font-mono-accent: 'JetBrains Mono', 'Consolas', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #031427;
+  color: #e2e8f0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-accent {
+  font-family: var(--font-mono-accent);
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.3);
+  color: #f8fafc;
+}

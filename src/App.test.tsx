@@ -1,34 +1,30 @@
 import { render, screen, within } from '@testing-library/react'
 import App from './App'
-import { landingData } from './data/landingData'
+import { portfolioData } from './data/portfolioData'
 
 describe('App', () => {
-    it('renders the main landing sections with project and contact content', () => {
+    it('renders the template-inspired portfolio structure and project cards', () => {
         render(<App />)
 
         expect(
             screen.getByRole('heading', {
                 level: 1,
-                name: new RegExp(`Hi, I'm ${landingData.hero.name}`, 'i'),
+                name: new RegExp(`${portfolioData.identity.name}\\.`, 'i'),
             }),
         ).toBeInTheDocument()
 
         const projectsHeading = screen.getByRole('heading', {
             level: 2,
-            name: /featured projects/i,
+            name: /some noteworthy projects/i,
         })
         const projectsSection = projectsHeading.closest('section')
 
-        expect(projectsHeading).toBeInTheDocument()
         expect(projectsSection).not.toBeNull()
-        expect(within(projectsSection as HTMLElement).getAllByRole('article')).toHaveLength(
-            landingData.projects.length,
+        expect(within(projectsSection as HTMLElement).getAllByRole('heading', { level: 3 })).toHaveLength(
+            portfolioData.projectTimeline.length,
         )
 
-        expect(screen.getByRole('link', { name: /github/i })).toHaveAttribute(
-            'href',
-            landingData.socials.find((social) => social.label === 'GitHub')?.href,
-        )
-        expect(screen.getByRole('button', { name: /send message/i })).toBeInTheDocument()
+        expect(screen.getByRole('link', { name: /04\. contact/i })).toHaveAttribute('href', '#contact')
+        expect(screen.getByRole('link', { name: /back to top/i })).toHaveAttribute('href', '#intro')
     })
 })
