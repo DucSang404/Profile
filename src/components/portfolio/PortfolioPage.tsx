@@ -3,6 +3,7 @@ import {
     FaEnvelope,
     FaFacebookF,
     FaFileAlt,
+    FaLayerGroup,
     FaFolderOpen,
     FaGithub,
     FaJava,
@@ -11,8 +12,8 @@ import {
     FaRegGem,
     FaServer,
 } from 'react-icons/fa'
-import { FiArrowUpRight, FiFileText } from 'react-icons/fi'
-import { motion, useScroll, useSpring } from 'framer-motion'
+import { FiArrowRight, FiArrowUpRight, FiFileText, FiSend, FiZap } from 'react-icons/fi'
+import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion'
 import { SiDocker, SiGraphql, SiNodedotjs, SiPython, SiReact } from 'react-icons/si'
 import { useState } from 'react'
 import type { FormEvent } from 'react'
@@ -23,10 +24,10 @@ import SectionHeading from './SectionHeading'
 import type { IconType } from 'react-icons'
 
 const navItems = [
-    { index: '01', label: 'About', href: '#about' },
-    { index: '02', label: 'Experience', href: '#experience' },
-    { index: '03', label: 'Work', href: '#projects' },
-    { index: '04', label: 'Contact', href: '#contact' },
+    { label: 'About', href: '#about' },
+    { label: 'Experience', href: '#experience' },
+    { label: 'Work', href: '#projects' },
+    { label: 'Contact', href: '#contact' },
 ]
 
 const socialIconMap = {
@@ -75,6 +76,8 @@ function PortfolioPage() {
         damping: 24,
         mass: 0.25,
     })
+    const ambientY = useTransform(scrollYProgress, [0, 1], [0, -120])
+    const gridOpacity = useTransform(scrollYProgress, [0, 0.4, 1], [0.34, 0.24, 0.14])
 
     const highlightTools = Array.from(
         new Set(portfolioData.skillClusters.flatMap((cluster) => cluster.tools)),
@@ -85,6 +88,7 @@ function PortfolioPage() {
         email: '',
         message: '',
     })
+    const [showScrollTop, setShowScrollTop] = useState(false)
 
     const directEmail =
         portfolioData.contact.channels.find((channel) => channel.href.startsWith('mailto:'))?.href.replace('mailto:', '') ??
@@ -100,6 +104,10 @@ function PortfolioPage() {
         window.location.href = `mailto:${directEmail}?subject=${subject}&body=${body}`
     }
 
+    useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+        setShowScrollTop(latest > 0.12)
+    })
+
     return (
         <main className="relative overflow-x-clip bg-transparent text-slate-100">
             <motion.div
@@ -114,18 +122,21 @@ function PortfolioPage() {
             <motion.div
                 aria-hidden="true"
                 className="pointer-events-none fixed -right-24 top-24 -z-10 h-56 w-56 rounded-full bg-cyan-300/10 blur-3xl"
-                animate={{ y: [0, -18, 0], x: [0, 10, 0], opacity: [0.22, 0.35, 0.22] }}
+                style={{ y: ambientY }}
+                animate={{ x: [0, 10, 0], opacity: [0.22, 0.35, 0.22] }}
                 transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
             />
             <motion.div
                 aria-hidden="true"
                 className="pointer-events-none fixed -left-20 bottom-24 -z-10 h-52 w-52 rounded-full bg-blue-300/10 blur-3xl"
-                animate={{ y: [0, 16, 0], x: [0, -12, 0], opacity: [0.15, 0.28, 0.15] }}
+                style={{ y: ambientY }}
+                animate={{ x: [0, -12, 0], opacity: [0.15, 0.28, 0.15] }}
                 transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
             />
-            <div
+            <motion.div
                 aria-hidden="true"
                 className="pointer-events-none fixed inset-0 -z-10 opacity-30 [background-image:linear-gradient(rgba(148,163,184,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.09)_1px,transparent_1px)] [background-size:60px_60px]"
+                style={{ opacity: gridOpacity }}
             />
 
             <header className="sticky top-0 z-50 border-b border-slate-400/10 bg-[#051a34]/78 backdrop-blur-xl">
@@ -140,9 +151,6 @@ function PortfolioPage() {
                                 href={item.href}
                                 className="group rounded-md px-3 py-2 text-sm font-medium text-slate-300 transition duration-300 hover:text-cyan-300"
                             >
-                                <span className="font-mono-accent text-xs text-slate-400 transition duration-300 group-hover:text-cyan-300">
-                                    {item.index}.
-                                </span>{' '}
                                 <span>{item.label}</span>
                             </a>
                         ))}
@@ -152,9 +160,18 @@ function PortfolioPage() {
 
             <section id="intro" className="pb-20 pt-14 md:pt-20">
                 <Container>
-                    <Reveal className="max-w-5xl">
+                    <Reveal className="max-w-6xl">
+                        <motion.div
+                            className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm text-cyan-100 shadow-[0_10px_30px_rgba(8,145,178,0.16)] backdrop-blur"
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            <FiZap className="text-cyan-300" />
+                            {portfolioData.identity.availability}
+                        </motion.div>
                         <motion.p
-                            className="font-mono-accent text-lg tracking-wide text-cyan-200"
+                            className="mt-6 font-mono-accent text-lg tracking-wide text-cyan-200"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
@@ -162,7 +179,7 @@ function PortfolioPage() {
                             Hi, i'm Duc Sang
                         </motion.p>
                         <motion.h1
-                            className="mt-4 max-w-4xl text-balance font-display text-5xl leading-[1] text-white sm:text-6xl lg:text-7xl"
+                            className="mt-4 max-w-4xl text-balance font-display text-5xl leading-[1] text-white sm:text-6xl lg:text-5xl"
                             initial={{ opacity: 0, y: 14 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.04 }}
@@ -178,7 +195,7 @@ function PortfolioPage() {
                             {portfolioData.identity.introHeadline}
                         </motion.h2>
                         <motion.p
-                            className="mt-10 max-w-3xl text-lg leading-relaxed text-slate-300"
+                            className="mt-8 max-w-3xl text-lg leading-relaxed text-slate-300"
                             initial={{ opacity: 0, y: 14 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.65, delay: 0.18 }}
@@ -192,6 +209,20 @@ function PortfolioPage() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.25 }}
                         >
+                            <a
+                                href={portfolioData.identity.primaryCta.href}
+                                className="inline-flex items-center gap-2 rounded-md border border-cyan-300/80 bg-cyan-300/12 px-5 py-3 text-sm font-semibold text-cyan-100 shadow-[0_12px_40px_rgba(34,211,238,0.14)] transition duration-300 hover:-translate-y-1 hover:bg-cyan-300/18"
+                            >
+                                {portfolioData.identity.primaryCta.label}
+                                <FiArrowRight />
+                            </a>
+                            <a
+                                href={portfolioData.identity.secondaryCta.href}
+                                className="inline-flex items-center gap-2 rounded-md border border-slate-400/35 bg-slate-950/25 px-5 py-3 text-sm font-semibold text-slate-200 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/70 hover:text-cyan-200"
+                            >
+                                {portfolioData.identity.secondaryCta.label}
+                                <FiSend />
+                            </a>
                             {portfolioData.contact.channels.map((channel) => {
                                 const Icon = getSocialIcon(channel.label)
                                 return (
@@ -208,6 +239,60 @@ function PortfolioPage() {
                                 )
                             })}
                         </motion.div>
+
+                        <motion.div
+                            className="mt-12 grid gap-4 lg:grid-cols-[1.4fr_0.9fr]"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.75, delay: 0.32 }}
+                        >
+                            <div className="grid gap-4 md:grid-cols-3">
+                                {portfolioData.identity.metrics.map((metric, index) => (
+                                    <motion.div
+                                        key={metric.label}
+                                        className="group relative overflow-hidden rounded-2xl border border-slate-400/15 bg-slate-950/30 p-5 shadow-[0_20px_60px_rgba(2,12,27,0.24)] backdrop-blur-sm transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40"
+                                        initial={{ opacity: 0, y: 18 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.55, delay: 0.38 + index * 0.08 }}
+                                        whileHover={{ scale: 1.01 }}
+                                    >
+                                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/80 to-transparent opacity-70" />
+                                        <p className="font-mono-accent text-xs uppercase tracking-[0.24em] text-slate-500">
+                                            {metric.label}
+                                        </p>
+                                        <p className="mt-4 text-2xl font-semibold text-white">{metric.value}</p>
+                                        <p className="mt-3 text-sm leading-relaxed text-slate-300">{metric.description}</p>
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            <motion.div
+                                className="relative overflow-hidden rounded-3xl border border-cyan-300/20 bg-[linear-gradient(145deg,rgba(7,27,46,0.95),rgba(4,20,39,0.88))] p-6 shadow-[0_25px_80px_rgba(2,12,27,0.35)]"
+                                whileHover={{ y: -4 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <div className="absolute -right-14 top-0 h-32 w-32 rounded-full bg-cyan-300/10 blur-3xl" />
+                                <p className="font-mono-accent text-xs uppercase tracking-[0.26em] text-cyan-200/80">
+                                    Current Direction
+                                </p>
+                                <div className="mt-4 space-y-4">
+                                    <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                                        <div>
+                                            <p className="text-sm text-slate-400">Role focus</p>
+                                            <p className="text-base font-semibold text-white">{portfolioData.identity.role}</p>
+                                        </div>
+                                        <FaLayerGroup className="text-xl text-cyan-300" />
+                                    </div>
+                                    <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                                        <div>
+                                            <p className="text-sm text-slate-400">Location</p>
+                                            <p className="text-base font-semibold text-white">{portfolioData.identity.location}</p>
+                                        </div>
+                                        <FaMapMarkerAlt className="text-lg text-cyan-300" />
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </motion.div>
                     </Reveal>
                 </Container>
             </section>
@@ -220,6 +305,20 @@ function PortfolioPage() {
 
                     <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
                         <Reveal className="space-y-5">
+                            <div className="flex flex-wrap gap-3">
+                                {portfolioData.skillClusters.map((cluster, index) => (
+                                    <motion.div
+                                        key={cluster.title}
+                                        className="rounded-full border border-slate-400/20 bg-slate-950/35 px-4 py-2 text-sm text-slate-200"
+                                        initial={{ opacity: 0, y: 12 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, amount: 0.4 }}
+                                        transition={{ duration: 0.45, delay: index * 0.06 }}
+                                    >
+                                        {cluster.title}
+                                    </motion.div>
+                                ))}
+                            </div>
                             {portfolioData.about.paragraphs.map((paragraph) => (
                                 <p key={paragraph} className="text-lg leading-relaxed text-slate-300">
                                     {paragraph}
@@ -253,14 +352,36 @@ function PortfolioPage() {
                         </Reveal>
 
                         <Reveal delay={0.08} className="mx-auto w-full max-w-sm lg:max-w-md">
-                            <div className="relative rounded-xl border border-cyan-300/60 p-2 shadow-[0_0_0_1px_rgba(56,189,248,0.3),0_20px_60px_rgba(4,25,52,0.45)]">
+                            <motion.div
+                                className="relative rounded-[1.75rem] border border-cyan-300/40 bg-slate-950/25 p-2 shadow-[0_0_0_1px_rgba(56,189,248,0.2),0_20px_60px_rgba(4,25,52,0.45)]"
+                                whileHover={{ y: -8, rotateX: 2, rotateY: -2 }}
+                                transition={{ duration: 0.35 }}
+                            >
+                                <div className="absolute -left-5 top-10 rounded-full border border-cyan-300/25 bg-slate-950/80 px-3 py-2 text-xs text-cyan-100 shadow-[0_20px_40px_rgba(6,182,212,0.15)] backdrop-blur">
+                                    Backend Systems
+                                </div>
+                                <div className="absolute -right-4 bottom-14 rounded-full border border-white/10 bg-white/8 px-3 py-2 text-xs text-slate-100 backdrop-blur">
+                                    UI Motion + Product Thinking
+                                </div>
                                 <img
                                     src={portfolioData.about.imageUrl}
                                     alt={portfolioData.about.imageAlt}
-                                    className="aspect-[4/5] w-full rounded-lg object-cover"
+                                    className="aspect-[4/5] w-full rounded-[1.2rem] object-cover"
                                     loading="lazy"
                                 />
-                            </div>
+                                <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(2,6,23,0.84),rgba(8,47,73,0.55))] p-4 backdrop-blur">
+                                    <p className="font-mono-accent text-xs uppercase tracking-[0.24em] text-cyan-200">Profile Snapshot</p>
+                                    <div className="mt-3 flex items-center justify-between gap-3">
+                                        <div>
+                                            <p className="text-lg font-semibold text-white">{portfolioData.identity.name}</p>
+                                            <p className="text-sm text-slate-300">{portfolioData.identity.role}</p>
+                                        </div>
+                                        <div className="rounded-full border border-cyan-300/25 bg-cyan-300/10 px-3 py-1 text-xs text-cyan-100">
+                                            Open to collaborate
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
                         </Reveal>
                     </div>
                 </Container>
@@ -276,8 +397,10 @@ function PortfolioPage() {
                             <Reveal
                                 key={`${company.company}-${company.totalDuration}`}
                                 delay={index * 0.06}
-                                className="rounded-2xl border border-slate-400/15 bg-slate-950/25 p-6 transition duration-300 hover:border-cyan-300/40"
+                                className="group relative overflow-hidden rounded-3xl border border-slate-400/15 bg-slate-950/25 p-6 transition duration-300 hover:border-cyan-300/40"
                             >
+                                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/80 to-transparent opacity-70" />
+                                <div className="absolute -right-16 top-8 h-32 w-32 rounded-full bg-cyan-300/8 blur-3xl transition duration-300 group-hover:bg-cyan-300/14" />
                                 <div className="flex items-start gap-4">
                                     <div className="h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-white/15 bg-slate-900/60">
                                         <img
@@ -293,6 +416,9 @@ function PortfolioPage() {
                                             {company.totalDuration} • {company.locationType}
                                         </p>
                                     </div>
+                                    <div className="ml-auto hidden rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300 sm:block">
+                                        {company.roles.length} role{company.roles.length > 1 ? 's' : ''}
+                                    </div>
                                 </div>
 
                                 <div className="relative ml-7 mt-5 space-y-6 border-l border-slate-500/35 pl-6">
@@ -303,7 +429,7 @@ function PortfolioPage() {
                                                 className="absolute -left-[1.82rem] top-1.5 h-2.5 w-2.5 rounded-full border border-cyan-200/70 bg-cyan-300"
                                             />
                                             <h4 className="text-2xl font-semibold text-slate-100">{role.title}</h4>
-                                            <p className="text-base text-slate-300">{role.employmentType}</p>
+                                            <p className="text-base text-slate-300">Availability</p>
                                             <p className="font-mono-accent mt-1 text-sm text-slate-400">
                                                 {role.period} • {role.duration}
                                             </p>
@@ -311,6 +437,9 @@ function PortfolioPage() {
                                                 <FaRegGem className="text-cyan-300" />
                                                 {role.skillsSummary}
                                             </p>
+                                            <div className="mt-4 inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs text-cyan-100">
+                                                {role.employmentType}
+                                            </div>
                                             {roleIndex < company.roles.length - 1 ? (
                                                 <div className="mt-4 border-b border-slate-500/20" />
                                             ) : null}
@@ -326,7 +455,7 @@ function PortfolioPage() {
             <section id="projects" className="scroll-mt-28 py-20 md:py-24">
                 <Container>
                     <Reveal>
-                        <SectionHeading index="03" title="Some Noteworthy Projects" />
+                        <SectionHeading index="03" title="Featured Projects" />
                     </Reveal>
                     <Reveal className="rounded-2xl border border-slate-400/20 bg-slate-950/30 p-5 md:p-7">
                         <div className="space-y-7">
@@ -346,7 +475,7 @@ function PortfolioPage() {
                                                 />
                                                 <div className="rounded-xl border border-slate-400/20 bg-slate-900/35 p-3.5 transition duration-300 hover:border-cyan-300/45">
                                                     <p className="font-mono-accent text-xs uppercase tracking-[0.2em] text-slate-400">
-                                                        Month {item.month}
+                                                        {item.month}
                                                     </p>
                                                     <div className="mt-1 flex items-center gap-2">
                                                         <FiFileText className="text-cyan-300" />
@@ -356,10 +485,11 @@ function PortfolioPage() {
                                                                 href={item.href}
                                                                 target="_blank"
                                                                 rel="noreferrer"
-                                                                aria-label={`${item.title} link`}
-                                                                className="ml-1 rounded p-1 text-slate-300 transition duration-300 hover:text-cyan-200"
+                                                                aria-label={`View ${item.title} on GitHub`}
+                                                                className="ml-1 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm font-medium text-slate-100 transition duration-300 hover:-translate-y-0.5 hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-cyan-100"
                                                             >
-                                                                <FiArrowUpRight />
+                                                                <FaGithub className="text-base" />
+                                                                <span>GitHub</span>
                                                             </a>
                                                         ) : null}
                                                     </div>
@@ -390,7 +520,7 @@ function PortfolioPage() {
 
                         <form
                             onSubmit={handleMailSubmit}
-                            className="mx-auto mt-10 grid max-w-2xl gap-3 rounded-2xl border border-slate-400/20 bg-slate-950/35 p-5 text-left"
+                            className="mx-auto mt-10 grid max-w-2xl gap-3 rounded-3xl border border-slate-400/20 bg-slate-950/35 p-5 text-left shadow-[0_24px_60px_rgba(2,12,27,0.24)]"
                         >
                             <div className="grid gap-3 md:grid-cols-2">
                                 <label className="text-sm text-slate-300">
@@ -456,6 +586,17 @@ function PortfolioPage() {
                     </a>
                 </Container>
             </footer>
+
+            <motion.a
+                href="#intro"
+                aria-label="Back to top"
+                className="fixed bottom-6 right-6 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-cyan-300/35 bg-[#071a30]/80 text-cyan-200 shadow-[0_16px_40px_rgba(2,12,27,0.4)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-300/70 hover:bg-cyan-300/12 hover:text-cyan-100"
+                initial={{ opacity: 0, scale: 0.85, y: 16 }}
+                animate={showScrollTop ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.85, y: 16 }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+            >
+                <FiArrowUpRight className="-rotate-45 text-lg" />
+            </motion.a>
         </main>
     )
 }

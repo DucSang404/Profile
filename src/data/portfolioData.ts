@@ -6,13 +6,13 @@ import type { PortfolioData } from '../types/portfolio'
 
 export const portfolioData: PortfolioData = {
   identity: {
-    name: 'Duc Sang',
-    role: 'Backend-Focused Software Developer',
+    name: 'Creator of ShawnSpace',
+    role: 'Fullstack Engineering',
     location: 'Ho Chi Minh City, Vietnam',
-    availability: 'Open to internship and fresher opportunities',
-    introHeadline: 'I build scalable backend systems and thoughtful web products.',
+    availability: 'Open to freelance opportunities',
+    introHeadline: 'Building scalable backends and web products.',
     introBody:
-      'I specialize in backend architecture with Node.js and modern service patterns, while still delivering clean, user-focused interfaces. My goal is to build products that are fast, reliable, and easy to evolve.',
+      'I develop scalable services and fullstack applications with a focus on performance and reliability. From system design to deployment, I build products that are efficient, maintainable, and ready for real-world usage.',
     primaryCta: {
       label: 'Explore Selected Work',
       href: '#projects',
@@ -24,16 +24,16 @@ export const portfolioData: PortfolioData = {
     metrics: [
       {
         label: 'Projects Built',
-        value: '12+',
+        value: '10+',
         description: 'Academic and personal products shipped with modern stacks.',
       },
       {
         label: 'Core Focus',
-        value: 'React + TypeScript',
+        value: 'NodeJS, React',
         description: 'Component systems, interaction design, and robust frontend architecture.',
       },
       {
-        label: 'Engineering Interest',
+        label: 'Expertise',
         value: 'Backend Systems',
         description: 'Node.js services, APIs, and practical cloud-friendly deployment flows.',
       },
@@ -42,79 +42,28 @@ export const portfolioData: PortfolioData = {
   about: {
     title: 'About Me',
     paragraphs: [
-      'I am an Information Technology student at HCMUTE who enjoys shaping clean interfaces and reliable product flows from the ground up.',
-      'My favorite work lives at the intersection of visual design, component architecture, and practical engineering. I care about readability, maintainability, and a clear user journey.',
-      'I am currently strengthening backend and system design skills while continuing to ship modern frontend experiences.',
+      'I am an Information Technology student at HCMUTE passionate about building reliable and scalable web systems.',
+      'I work across fullstack development, with a strong focus on backend architecture, API design, and containerized deployments.',
+      'Currently, I am strengthening my system design and cloud deployment skills while delivering modern, maintainable web applications.',
     ],
     imageUrl: avatarImage,
     imageAlt: 'Portrait illustration of Duc Sang',
   },
   skillClusters: [
     {
-      title: 'Product Frontend',
+      title: 'Backend & APIs',
       focus: 'Design systems, responsive UI, and interaction polish.',
       tools: ['React'],
     },
     {
-      title: 'API and Services',
+      title: 'Frontend Systems',
       focus: 'Clean contracts, reliability, and scalable architecture.',
-      tools: ['Node.js', 'Python', 'Java', 'REST API', 'GraphQL', 'gRPC', 'Microservices'],
+      tools: ['Node.js', 'Python', 'Java', 'Microservices'],
     },
     {
-      title: 'Data and Delivery',
+      title: 'Infrastructure & DevOps',
       focus: 'Data modeling, deployment consistency, and collaboration.',
       tools: ['Docker', 'CI/CD', 'AWS'],
-    },
-  ],
-  projects: [
-    {
-      title: 'Campus Pulse',
-      summary:
-        'A social-style campus platform for events and student updates with fast filtering and intuitive interaction loops.',
-      impact:
-        'Improved event discovery flow and reduced information friction with structured cards and contextual actions.',
-      stack: ['React', 'TypeScript', 'Tailwind', 'Vite'],
-      status: 'Live Concept',
-      links: [
-        {
-          label: 'GitHub',
-          href: 'https://github.com/ducsang4869/campus-pulse',
-        },
-        {
-          label: 'Live Demo',
-          href: 'https://campus-pulse-demo.vercel.app',
-        },
-      ],
-    },
-    {
-      title: 'Task Orbit',
-      summary:
-        'A productivity workspace with drag-first interactions, visual progress markers, and dynamic state transitions.',
-      impact:
-        'Made task progression clearer with motion-guided hierarchy and a stronger information architecture.',
-      stack: ['React', 'Framer Motion', 'Firebase', 'TypeScript'],
-      status: 'Case Study',
-      links: [
-        {
-          label: 'GitHub',
-          href: 'https://github.com/ducsang4869/task-orbit',
-        },
-      ],
-    },
-    {
-      title: 'DevSnaps',
-      summary:
-        'A lightweight developer knowledge board to collect snippets, references, and reusable coding patterns.',
-      impact:
-        'Centralized learning artifacts into one searchable workspace for faster team and personal reuse.',
-      stack: ['React', 'Node.js', 'MongoDB'],
-      status: 'In Progress',
-      links: [
-        {
-          label: 'GitHub',
-          href: 'https://github.com/ducsang4869/devsnaps',
-        },
-      ],
     },
   ],
   projectTimeline: [
@@ -122,15 +71,16 @@ export const portfolioData: PortfolioData = {
       year: '2025',
       items: [
         {
-          month: '09',
-          title: 'BitSport Booking API',
-          summary: 'Built booking APIs and integrated Redis + Socket.IO for real-time status updates.',
-          href: 'https://github.com/ducsang4869',
+          month: 'January',
+          title: 'Eleven Fashion',
+          summary: 'Built a fullstack e-commerce platform with product management, cart functionality, and order workflows, focusing on scalable backend services and clean UI.',
+          href: 'https://github.com/DucSang404/WebEcommerce_2024-2025',
         },
         {
-          month: '12',
-          title: 'Internal Workflow Service',
-          summary: 'Implemented NestJS service modules for internal product workflows and deployment automation.',
+          month: 'September',
+          title: 'Hotel Booking System',
+          summary: 'Developed a hotel booking management system with RESTful APIs, database design, and modular backend architecture for reservations and room management.',
+          href: 'https://github.com/DucSang404/DAS_HotelManagement'
         },
       ],
     },
@@ -138,16 +88,10 @@ export const portfolioData: PortfolioData = {
       year: '2026',
       items: [
         {
-          month: '02',
-          title: 'Portfolio Rebuild System',
-          summary: 'Redesigned portfolio architecture with data-driven sections, reusable components, and motion UX.',
-          href: 'https://github.com/ducsang4869/profile-repo',
-        },
-        {
-          month: '03',
-          title: 'DevSnaps v2',
-          summary: 'Expanded snippet platform with better search flow, cleaner dashboard structure, and MongoDB refinements.',
-          href: 'https://github.com/ducsang4869/devsnaps',
+          month: 'February',
+          title: 'Learning Platform',
+          summary: 'Developed an online learning platform with structured courses, interactive content, and scalable backend architecture.',
+          href: 'https://github.com/DucSang404/Learning-Platform',
         },
       ],
     },
@@ -165,14 +109,14 @@ export const portfolioData: PortfolioData = {
           employmentType: 'Part-time',
           period: 'Dec 2025 - Present',
           duration: '4 mos',
-          skillsSummary: 'GraphQL, Neo4j and +1 skill',
+          skillsSummary: 'AWS, Jenkins, CI/CD, Neo4j, Docker, K8S and more',
         },
         {
           title: 'Intern Fullstack',
           employmentType: 'Full-time',
           period: 'Sep 2025 - Dec 2025',
           duration: '4 mos',
-          skillsSummary: 'Socket.io, Apollo GraphQL and +5 skills',
+          skillsSummary: 'Nodejs, gRPC, Microservices, GraphQL, Redis, MongoDB and more',
         },
       ],
     },
@@ -188,7 +132,7 @@ export const portfolioData: PortfolioData = {
           employmentType: 'Part-time',
           period: 'Jun 2025 - Aug 2025',
           duration: '3 mos',
-          skillsSummary: 'Node.js, PostgreSQL, REST API',
+          skillsSummary: 'Node.js, PostgreSQL, REST API, MongoDB and more',
         },
       ],
     },
@@ -204,7 +148,7 @@ export const portfolioData: PortfolioData = {
           employmentType: 'Academic',
           period: '2022 - Present',
           duration: 'Ongoing',
-          skillsSummary: 'Algorithms, Databases, Team Projects',
+          skillsSummary: 'Algorithms, Databases, System Design, Teamwork, Leadership and more',
         },
       ],
     },
@@ -216,23 +160,23 @@ export const portfolioData: PortfolioData = {
     channels: [
       {
         label: 'Email',
-        value: 'ducsang4869@example.com',
-        href: 'mailto:ducsang4869@example.com',
+        value: 'ndsang404@gmail.com',
+        href: 'mailto:ndsang404@gmail.com',
       },
       {
         label: 'GitHub',
-        value: 'github.com/ducsang4869',
-        href: 'https://github.com/ducsang4869',
+        value: 'github.com/DucSang404',
+        href: 'https://github.com/DucSang404',
       },
       {
         label: 'LinkedIn',
-        value: 'linkedin.com/in/ducsang4869',
-        href: 'https://www.linkedin.com/in/ducsang4869/',
+        value: 'linkedin.com/in/sangnguyenduc',
+        href: 'https://www.linkedin.com/in/sangnguyenduc/',
       },
       {
         label: 'Facebook',
-        value: 'facebook.com/ducsang4869',
-        href: 'https://facebook.com/ducsang4869',
+        value: 'facebook.com/nguyenducsangg',
+        href: 'https://www.facebook.com/nguyenducsangg',
       },
       {
         label: 'Resume',

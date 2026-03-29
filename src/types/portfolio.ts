@@ -15,15 +15,6 @@ export interface ProjectLink {
   href: string
 }
 
-export interface ProjectHighlight {
-  title: string
-  summary: string
-  impact: string
-  stack: string[]
-  links: ProjectLink[]
-  status: string
-}
-
 export interface ProjectTimelineItem {
   month: string
   title: string
@@ -84,7 +75,6 @@ export interface PortfolioData {
     imageAlt: string
   }
   skillClusters: SkillCluster[]
-  projects: ProjectHighlight[]
   projectTimeline: ProjectTimelineYear[]
   experience: ExperienceCompany[]
   contact: {
